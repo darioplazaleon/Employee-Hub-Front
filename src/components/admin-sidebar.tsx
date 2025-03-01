@@ -77,16 +77,6 @@ export function AdminSidebar() {
                                                     <Link href="/dashboard/vacations/">Vacations list</Link>
                                                 </SidebarMenuSubButton>
                                             </SidebarMenuSubItem>
-                                            <SidebarMenuSubItem>
-                                                <SidebarMenuSubButton asChild>
-                                                    <Link href="/products/categories">Categories</Link>
-                                                </SidebarMenuSubButton>
-                                            </SidebarMenuSubItem>
-                                            <SidebarMenuSubItem>
-                                                <SidebarMenuSubButton asChild>
-                                                    <Link href="/products/inventory">Inventory</Link>
-                                                </SidebarMenuSubButton>
-                                            </SidebarMenuSubItem>
                                         </SidebarMenuSub>
                                     </CollapsibleContent>
                                 </SidebarMenuItem>

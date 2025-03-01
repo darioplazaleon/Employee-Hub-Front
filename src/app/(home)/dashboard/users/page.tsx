@@ -4,6 +4,7 @@ import {PlusCircle} from "lucide-react"
 import {UserListClient} from "@/components/user-list-client";
 import {cookies} from "next/headers";
 import Link from "next/link";
+import {getPositions} from "@/lib/api";
 
 async function getUsers() {
 
@@ -22,6 +23,7 @@ async function getUsers() {
 
 export default async function UsersListPage() {
     const users = await getUsers()
+    const positions = await getPositions()
 
     return (
         <SidebarInset className="p-6">
@@ -34,7 +36,7 @@ export default async function UsersListPage() {
                     </Link>
                 </Button>
             </div>
-            <UserListClient initialUsers={users}/>
+            <UserListClient initialUsers={users} positions={positions}/>
         </SidebarInset>
     )
 }

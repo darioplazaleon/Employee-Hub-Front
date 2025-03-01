@@ -54,7 +54,7 @@ export function AdminSidebar() {
                                             </SidebarMenuSubItem>
                                             <SidebarMenuSubItem>
                                                 <SidebarMenuSubButton asChild>
-                                                    <Link href="/users/roles">User Roles</Link>
+                                                    <Link href="/dashboard/users/positions">User Positions</Link>
                                                 </SidebarMenuSubButton>
                                             </SidebarMenuSubItem>
                                         </SidebarMenuSub>
@@ -74,7 +74,7 @@ export function AdminSidebar() {
                                         <SidebarMenuSub>
                                             <SidebarMenuSubItem>
                                                 <SidebarMenuSubButton asChild>
-                                                    <Link href="/products/list">Product List</Link>
+                                                    <Link href="/dashboard/vacations/">Vacations list</Link>
                                                 </SidebarMenuSubButton>
                                             </SidebarMenuSubItem>
                                             <SidebarMenuSubItem>

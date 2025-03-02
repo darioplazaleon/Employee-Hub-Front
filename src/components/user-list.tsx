@@ -31,6 +31,8 @@ interface User {
     email: string
     role: "ADMIN" | "MANAGER" | "USER"
     position: Position
+    isActive: boolean
+    createdAt: string
 }
 
 interface UserListProps {
@@ -57,11 +59,13 @@ export function UserList({ users, onUserDeleted }: UserListProps) {
             <Table>
                 <TableHeader>
                     <TableRow>
-                        <TableHead>Nombre</TableHead>
+                        <TableHead>Full name</TableHead>
                         <TableHead>Email</TableHead>
                         <TableHead>Rol</TableHead>
-                        <TableHead>Posición</TableHead>
-                        <TableHead className="w-[100px]">Acciones</TableHead>
+                        <TableHead>Position</TableHead>
+                        <TableHead>Status</TableHead>
+                        <TableHead>Created at</TableHead>
+                        <TableHead className="w-[100px]">Actions</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -80,10 +84,16 @@ export function UserList({ users, onUserDeleted }: UserListProps) {
                             </TableCell>
                             <TableCell>{user.position.name}</TableCell>
                             <TableCell>
+                                <Badge variant={user.isActive ? "success" : "destructive"}>
+                                    {user.isActive ? "ACTIVE" : "INACTIVE"}
+                                </Badge>
+                            </TableCell>
+                            <TableCell>{user.createdAt}</TableCell>
+                            <TableCell>
                                 <DropdownMenu>
                                     <DropdownMenuTrigger asChild>
                                         <Button variant="ghost" className="h-8 w-8 p-0">
-                                            <span className="sr-only">Abrir menú</span>
+                                            <span className="sr-only">Open Menu</span>
                                             <MoreHorizontal className="h-4 w-4" />
                                         </Button>
                                     </DropdownMenuTrigger>
@@ -91,12 +101,12 @@ export function UserList({ users, onUserDeleted }: UserListProps) {
                                         <DropdownMenuItem asChild>
                                             <Link href={`/users/${user.id}/edit`}>
                                                 <Pencil className="mr-2 h-4 w-4" />
-                                                <span>Editar</span>
+                                                <span>Edit</span>
                                             </Link>
                                         </DropdownMenuItem>
                                         <DropdownMenuItem onSelect={() => setUserToDelete(user)}>
                                             <Trash2 className="mr-2 h-4 w-4" />
-                                            <span>Eliminar</span>
+                                            <span>Delete</span>
                                         </DropdownMenuItem>
                                     </DropdownMenuContent>
                                 </DropdownMenu>

@@ -43,18 +43,18 @@ export function PositionForm({ position }: PositionFormProps) {
             )}
             <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                    Nombre
+                    Name
                 </label>
                 <Input id="name" name="name" defaultValue={position?.name} required />
                 {state?.errors?.name && <p className="mt-1 text-sm text-red-600">{state.errors.name[0]}</p>}
             </div>
-            <div>
-                <label htmlFor="description" className="block text-sm font-medium text-gray-700">
-                    Descripción
-                </label>
-                <Textarea id="description" name="description" defaultValue={position?.description} rows={3} />
-                {state?.errors?.description && <p className="mt-1 text-sm text-red-600">{state.errors.description[0]}</p>}
-            </div>
+            {/*<div>*/}
+            {/*    <label htmlFor="description" className="block text-sm font-medium text-gray-700">*/}
+            {/*        Descripción*/}
+            {/*    </label>*/}
+            {/*    <Textarea id="description" name="description" defaultValue={position?.description} rows={3} />*/}
+            {/*    {state?.errors?.description && <p className="mt-1 text-sm text-red-600">{state.errors.description[0]}</p>}*/}
+            {/*</div>*/}
             <SubmitButton />
         </form>
     )

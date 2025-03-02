@@ -15,11 +15,14 @@ async function getVacationRequest(id: string) {
 }
 
 export default async function VacationRequestPage({ params }: { params: { id: string } }) {
-    const request = await getVacationRequest(params.id)
+    const parameters = await params
+    const id = parameters.id
+
+    const request = await getVacationRequest(id)
 
     return (
         <SidebarInset className="p-6">
-            <h1 className="text-2xl font-semibold mb-6">Detalles de Solicitud de Vacaciones</h1>
+            <h1 className="text-2xl font-semibold mb-6">Vacations request details</h1>
             <VacationRequestDetails request={request} />
         </SidebarInset>
     )

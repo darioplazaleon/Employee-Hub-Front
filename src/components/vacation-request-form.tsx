@@ -1,72 +1,79 @@
 "use client"
 
-import type React from "react"
-
-import { useState } from "react"
+import { useFormState } from "react-dom"
 import { useRouter } from "next/navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { createVacationRequest } from "@/actions/vacation-actions"
+import { useFormStatus } from "react-dom"
+import { toast } from "sonner"
+
+function SubmitButton() {
+    const { pending } = useFormStatus()
+    return (
+        <Button type="submit" disabled={pending}>
+            {pending ? "Sending..." : "Submit Request"}
+        </Button>
+    )
+}
 
 export function VacationRequestForm() {
-    const [title, setTitle] = useState("")
-    const [startDate, setStartDate] = useState("")
-    const [endDate, setEndDate] = useState("")
-    const [comment, setComment] = useState("")
     const router = useRouter()
+    const initialState = { message: null, errors: {} }
+    const [state, formAction] = useFormState(createVacationRequest, initialState)
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault()
-        // En una aplicación real, aquí harías una llamada a la API para crear la solicitud
-        console.log({ title, startDate, endDate, comment })
-        // Simular una llamada a la API
-        await new Promise((resolve) => setTimeout(resolve, 1000))
-        router.push("/vacation-requests")
+    if (state?.success) {
+        toast.success("Vacation request created successfully")
+        router.push("/dashboard/vacations")
         router.refresh()
     }
 
     return (
         <Card>
             <CardHeader>
-                <CardTitle>Nueva Solicitud de Vacaciones</CardTitle>
+                <CardTitle>New Vacation Request</CardTitle>
             </CardHeader>
             <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form action={formAction} className="space-y-4">
+                    {state?.message && (
+                        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                            <strong className="font-bold">Error: </strong>
+                            <span className="block sm:inline">{state.message}</span>
+                        </div>
+                    )}
                     <div>
                         <label htmlFor="title" className="block text-sm font-medium text-gray-700">
-                            Título
+                            Title
                         </label>
-                        <Input id="title" value={title} onChange={(e) => setTitle(e.target.value)} required />
+                        <Input id="title" name="title" required />
+                        {state?.errors?.title && <p className="mt-1 text-sm text-red-600">{state.errors.title[0]}</p>}
                     </div>
                     <div>
                         <label htmlFor="startDate" className="block text-sm font-medium text-gray-700">
-                            Fecha de Inicio
+                            Start Date
                         </label>
-                        <Input
-                            id="startDate"
-                            type="date"
-                            value={startDate}
-                            onChange={(e) => setStartDate(e.target.value)}
-                            required
-                        />
+                        <Input id="startDate" name="startDate" type="date" required />
+                        {state?.errors?.startDate && <p className="mt-1 text-sm text-red-600">{state.errors.startDate[0]}</p>}
                     </div>
                     <div>
                         <label htmlFor="endDate" className="block text-sm font-medium text-gray-700">
-                            Fecha de Fin
+                            End Date
                         </label>
-                        <Input id="endDate" type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} required />
+                        <Input id="endDate" name="endDate" type="date" required />
+                        {state?.errors?.endDate && <p className="mt-1 text-sm text-red-600">{state.errors.endDate[0]}</p>}
                     </div>
                     <div>
                         <label htmlFor="comment" className="block text-sm font-medium text-gray-700">
-                            Comentario
+                            Comment
                         </label>
-                        <Textarea id="comment" value={comment} onChange={(e) => setComment(e.target.value)} rows={4} />
+                        <Textarea id="comment" name="comment" rows={4} />
+                        {state?.errors?.comment && <p className="mt-1 text-sm text-red-600">{state.errors.comment[0]}</p>}
                     </div>
-                    <Button type="submit">Enviar Solicitud</Button>
+                    <SubmitButton />
                 </form>
             </CardContent>
         </Card>
     )
 }
-

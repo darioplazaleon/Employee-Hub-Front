@@ -37,7 +37,7 @@ export function VacationRequestsListWithFilters({ initialRequests }: VacationReq
     return (
         <Card>
             <CardHeader>
-                <CardTitle>Solicitudes de Vacaciones</CardTitle>
+                <CardTitle>Vacations request</CardTitle>
                 <div className="flex space-x-4 mt-4">
                     <Select onValueChange={(value) => setStatusFilter(value === "ALL" ? null : value)}>
                         <SelectTrigger className="w-[180px]">

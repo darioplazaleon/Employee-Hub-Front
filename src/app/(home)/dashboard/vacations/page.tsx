@@ -1,6 +1,9 @@
-import { SidebarInset } from "@/components/ui/sidebar"
-import { VacationRequestsListWithFilters } from "@/components/vacation-requests-list-with-filters"
+import {SidebarInset} from "@/components/ui/sidebar"
+import {VacationRequestsListWithFilters} from "@/components/vacation-requests-list-with-filters"
 import {cookies} from "next/headers";
+import {Button} from "@/components/ui/button";
+import Link from "next/link";
+import {PlusCircle} from "lucide-react";
 
 async function getVacationRequests() {
     const cookieStore = await cookies()
@@ -20,8 +23,18 @@ export default async function VacationRequestsPage() {
 
     return (
         <SidebarInset className="p-6">
-            <h1 className="text-2xl font-semibold mb-6">Solicitudes de Vacaciones</h1>
-            <VacationRequestsListWithFilters initialRequests={requests} />
+            <div className="flex justify-between items-center mb-6">
+                <h1 className="text-2xl font-semibold">Vacation Request</h1>
+                <div className="ml-4">
+                    <Button asChild>
+                        <Link href="/dashboard/vacations/new">
+                            <PlusCircle className="mr-2 h-4 w-4"/>
+                            New request
+                        </Link>
+                    </Button>
+                </div>
+            </div>
+            <VacationRequestsListWithFilters initialRequests={requests}/>
         </SidebarInset>
     )
 }

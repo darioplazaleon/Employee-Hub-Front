@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Proyecto Frontend con React y Next.js
 
-## Getting Started
+Este proyecto es una aplicación frontend desarrollada con React y Next.js. La aplicación está diseñada para interactuar
+con un proyecto backend separado, proporcionando una interfaz de usuario para diversas funcionalidades.
 
-First, run the development server:
+## Funcionalidades
+
+- **Autenticación de Usuarios**: Los usuarios pueden iniciar sesión y registrarse.
+- **Gestión de Usuarios**: Los administradores pueden ver, crear, editar y eliminar usuarios.
+- **Gestión de Posiciones**: Los administradores pueden gestionar las posiciones disponibles.
+- **Gestión de Vacaciones**: Los usuarios pueden solicitar vacaciones y ver el estado de sus solicitudes.
+- **Configuración de Usuario**: Los usuarios pueden cambiar su contraseña y actualizar su perfil.
+
+## Estructura del Proyecto
+
+- **src/middleware.ts**: Middleware para la gestión de rutas y permisos de usuario.
+- **pages/**: Contiene las páginas de la aplicación.
+- **components/**: Componentes reutilizables de la interfaz de usuario.
+- **lib/**: Funciones auxiliares y utilidades.
+
+## Requisitos
+
+- Node.js
+- npm o yarn
+
+## Instalación
+
+1. Clona el repositorio:
+    ```bash
+    git clone https://github.com/tu-usuario/tu-repositorio.git
+    ```
+2. Instala las dependencias:
+    ```bash
+    cd tu-repositorio
+    npm install
+    # o
+    yarn install
+    ```
+
+## Ejecución
+
+Para iniciar el servidor de desarrollo:
 
 ```bash
 npm run dev
-# or
+# o
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Configuración
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Asegúrate de configurar las variables de entorno necesarias en un archivo .env o .env.local.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```yaml
+API_BASE_URL=http://localhost:8080
+JWT_SECRET=secret # Clave secreta para la generación de tokens JWT,
+                  # usa la misma que en el proyecto backend
+```
 
-## Learn More
+## Proyecto Backend
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Este proyecto frontend está diseñado para funcionar junto con un [proyecto backend](https://github.com/darioplazaleon/Employee-Hub) separado. Asegúrate de tener el
+backend en funcionamiento y configurado correctamente para que la aplicación frontend pueda interactuar con él.  

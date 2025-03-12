@@ -16,7 +16,6 @@ export async function middleware(request: NextRequest) {
     }
 
     const adminPaths = [
-        // Los administradores tienen acceso a todo
         "/dashboard",
         "/dashboard/users",
         "/dashboard/users/new",
@@ -25,9 +24,9 @@ export async function middleware(request: NextRequest) {
         "/dashboard/positions",
         "/dashboard/positions/new",
         "/dashboard/positions/[id]/edit",
-        "/dashboard/vacation-requests",
-        "/dashboard/vacation-requests/new",
-        "/dashboard/vacation-requests/[id]",
+        "/dashboard/vacations",
+        "/dashboard/vacations/new",
+        "/dashboard/vacations/[id]",
         "/dashboard/settings/change-password",
     ]
 
@@ -35,18 +34,17 @@ export async function middleware(request: NextRequest) {
         "/dashboard",
         "/dashboard/users",
         "/dashboard/users/[id]",
-        "/dashboard/positions",
-        "/dashboard/vacation-requests",
-        "/dashboard/vacation-requests/new",
-        "/dashboard/vacation-requests/[id]",
+        "/dashboard/vacations",
+        "/dashboard/vacations/new",
+        "/dashboard/vacations/[id]",
         "/dashboard/settings/change-password",
     ]
 
     const userPaths = [
         "/dashboard",
-        "/dashboard/vacation-requests",
-        "/dashboard/vacation-requests/new",
-        "/dashboard/vacation-requests/[id]",
+        "/dashboard/vacations",
+        "/dashboard/vacations/new",
+        "/dashboard/vacations/[id]",
         "/dashboard/settings/change-password",
     ]
 

@@ -5,6 +5,7 @@ import {UserListClient} from "@/components/user-list-client";
 import {cookies} from "next/headers";
 import Link from "next/link";
 import {getPositions} from "@/lib/api";
+import {getUserToken} from "@/lib/auth";
 
 async function getUsers() {
 
@@ -22,6 +23,8 @@ async function getUsers() {
 }
 
 export default async function UsersListPage() {
+    const getUser = await getUserToken()
+    const userRole = getUser?.role
     const users = await getUsers()
     const positions = await getPositions()
 
@@ -29,12 +32,14 @@ export default async function UsersListPage() {
         <SidebarInset className="p-6">
             <div className="flex justify-between items-center mb-6">
                 <h1 className="text-2xl font-semibold">User List</h1>
-                <Button>
-                    <Link href={"/dashboard/users/new"} className="flex">
-                        <PlusCircle className="mr-2 h-4 w-4"/>
-                        Add User
-                    </Link>
-                </Button>
+                {userRole === "ADMIN" && (
+                    <Button>
+                        <Link href={"/dashboard/users/new"} className="flex">
+                            <PlusCircle className="mr-2 h-4 w-4"/>
+                            Add User
+                        </Link>
+                    </Button>
+                )}
             </div>
             <UserListClient initialUsers={users} positions={positions}/>
         </SidebarInset>

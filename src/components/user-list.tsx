@@ -72,7 +72,7 @@ export function UserList({ users, onUserDeleted }: UserListProps) {
                     {users.map((user) => (
                         <TableRow key={user.id}>
                             <TableCell>
-                                <Link href={`/users/${user.id}`} className="text-blue-600 hover:underline">
+                                <Link href={`/dashboard/users/${user.id}`} className="text-blue-600 hover:underline">
                                     {user.name}
                                 </Link>
                             </TableCell>

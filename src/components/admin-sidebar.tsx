@@ -63,11 +63,14 @@ export async function AdminSidebar() {
                                                         <Link href="/dashboard/users">User List</Link>
                                                     </SidebarMenuSubButton>
                                                 </SidebarMenuSubItem>
-                                                <SidebarMenuSubItem>
-                                                    <SidebarMenuSubButton asChild>
-                                                        <Link href="/dashboard/users/positions">User Positions</Link>
-                                                    </SidebarMenuSubButton>
-                                                </SidebarMenuSubItem>
+                                                {canAccessPositions && (
+                                                    <SidebarMenuSubItem>
+                                                        <SidebarMenuSubButton asChild>
+                                                            <Link href="/dashboard/users/positions">User
+                                                                Positions</Link>
+                                                        </SidebarMenuSubButton>
+                                                    </SidebarMenuSubItem>
+                                                )}
                                             </SidebarMenuSub>
                                         </CollapsibleContent>
                                     </SidebarMenuItem>
@@ -106,7 +109,8 @@ export async function AdminSidebar() {
                                         <SidebarMenuSub>
                                             <SidebarMenuSubItem>
                                                 <SidebarMenuSubButton asChild>
-                                                    <Link href="/dashboard/settings/change-password">Change Password</Link>
+                                                    <Link href="/dashboard/settings/change-password">Change
+                                                        Password</Link>
                                                 </SidebarMenuSubButton>
                                             </SidebarMenuSubItem>
                                             <SidebarMenuSubItem>

@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation"
 import { SidebarInset } from "@/components/ui/sidebar"
 import { UserDetails } from "@/components/user-details"
-import { VacationRequests } from "@/components/vacation-requests"
+import { VacationRequests } from "@/components/vacations/vacation-requests"
 import {cookies} from "next/headers";
 
 async function getUser(id: string) {

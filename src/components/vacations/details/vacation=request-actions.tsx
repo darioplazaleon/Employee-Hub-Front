@@ -5,8 +5,8 @@ import { useRouter } from "next/navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { approveVacationRequest, rejectVacationRequest } from "@/actions/vacation-actions"
 import { toast } from "sonner"
+import {approveVacationRequest, rejectVacationRequest} from "@/app/actions/vacation-actions";
 
 interface VacationRequest {
     id: number
@@ -20,34 +20,51 @@ interface VacationRequest {
     approvedBy: string | null
 }
 
-export function VacationRequestDetails({ request }: { request: VacationRequest }) {
+interface VacationRequestActionsProps {
+    request: VacationRequest
+    canManageRequests: boolean
+}
+
+export function VacationRequestActions({ request, canManageRequests }: VacationRequestActionsProps) {
     const [status, setStatus] = useState(request.status)
     const [isLoading, setIsLoading] = useState(false)
     const router = useRouter()
 
     const handleApprove = async () => {
         setIsLoading(true)
-        const result = await approveVacationRequest(request.id)
-        setIsLoading(false)
-        if (result.success) {
-            setStatus("APPROVED")
-            toast.success("Vacation request approved")
-            router.refresh()
-        } else {
-            toast.error(result.error || "Error approving the request")
+        try {
+            const response = await approveVacationRequest(request.id)
+
+            if (response.success) {
+                setStatus("APPROVED")
+                toast.success("Vacation request approved")
+                router.refresh()
+            } else {
+                toast.error("Error approving vacation request")
+            }
+        } catch (error) {
+            toast.error("Error processing request")
+        } finally {
+            setIsLoading(false)
         }
     }
 
     const handleReject = async () => {
         setIsLoading(true)
-        const result = await rejectVacationRequest(request.id)
-        setIsLoading(false)
-        if (result.success) {
-            setStatus("REJECTED")
-            toast.success("Vacation request rejected")
-            router.refresh()
-        } else {
-            toast.error(result.error || "Error rejecting the request")
+        try {
+            const response = await rejectVacationRequest(request.id)
+
+            if (response.success) {
+                setStatus("REJECTED")
+                toast.success("Vacation request rejected")
+                router.refresh()
+            } else {
+                toast.error("Error rejecting vacation request")
+            }
+        } catch (error) {
+            toast.error("Error processing request")
+        } finally {
+            setIsLoading(false)
         }
     }
 
@@ -93,7 +110,8 @@ export function VacationRequestDetails({ request }: { request: VacationRequest }
                         </div>
                     )}
                 </dl>
-                {status === "PENDING" && (
+
+                {canManageRequests && status === "PENDING" && (
                     <div className="mt-6 flex space-x-4">
                         <Button onClick={handleApprove} disabled={isLoading}>
                             {isLoading ? "Processing..." : "Approve"}
@@ -107,3 +125,4 @@ export function VacationRequestDetails({ request }: { request: VacationRequest }
         </Card>
     )
 }
+

@@ -1,9 +1,11 @@
 import {SidebarInset} from "@/components/ui/sidebar"
-import {VacationRequestsListWithFilters} from "@/components/vacation-requests-list-with-filters"
+import {VacationRequestsListWithFilters} from "@/components/vacations/vacation-requests-list-with-filters"
 import {cookies} from "next/headers";
 import {Button} from "@/components/ui/button";
 import Link from "next/link";
 import {PlusCircle} from "lucide-react";
+import {getUserToken} from "@/lib/auth";
+import {getUserData} from "@/lib/api";
 
 async function getVacationRequests() {
     const cookieStore = await cookies()
@@ -19,7 +21,19 @@ async function getVacationRequests() {
 }
 
 export default async function VacationRequestsPage() {
-    const requests = await getVacationRequests()
+    const userToken = await getUserToken()
+    const userRole = userToken?.role
+
+    const userData = await getUserData(userToken)
+    const userVacationRequests = userData.vacationRequests
+    console.log(userVacationRequests)
+
+    let requests = []
+    if (userRole === "ADMIN" || userRole === "MANAGER") {
+        requests = await getVacationRequests()
+    } else if (userRole === "USER") {
+        requests = userVacationRequests
+    }
 
     return (
         <SidebarInset className="p-6">

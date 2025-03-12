@@ -16,7 +16,7 @@ import {
     AlertDialogTitle,
 } from "@/components/ui/alert-dialog"
 import { MoreHorizontal, Pencil, Trash2 } from "lucide-react"
-import { deletePosition } from "@/actions/position-actions"
+import { deletePosition } from "@/app/actions/position-actions"
 import { toast } from "sonner"
 
 interface Position {

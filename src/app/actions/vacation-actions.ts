@@ -56,14 +56,21 @@ export async function rejectVacationRequest(vacationId: number) {
     }
 }
 
+
+
 const CreateVacationRequestSchema = z.object({
-    title: z.string().min(1, "El título es requerido"),
-    startDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Formato de fecha inválido"),
-    endDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Formato de fecha inválido"),
+    title: z.string().min(1, "Title is required"),
+    startDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Invalid date format"),
+    endDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Invalid date format"),
     comment: z.string().optional(),
 })
 
-export async function createVacationRequest(prevState: any, formData: FormData) {
+interface FormState {
+    message: string | null;
+    errors: Record<string, string[]>;
+}
+
+export async function createVacationRequest(prevState: FormState, formData: FormData) {
     const validatedFields = CreateVacationRequestSchema.safeParse({
         title: formData.get("title"),
         startDate: formData.get("startDate"),
@@ -74,14 +81,13 @@ export async function createVacationRequest(prevState: any, formData: FormData) 
     if (!validatedFields.success) {
         return {
             errors: validatedFields.error.flatten().fieldErrors,
-            message: "Hay errores en el formulario. Por favor, corríjalos.",
+            message: "There are errors in the form. Please correct them.",
         }
     }
 
     const { title, startDate, endDate, comment } = validatedFields.data
 
     try {
-
         const cookieStore = await cookies()
         const token = cookieStore.get("access_token")?.value
 

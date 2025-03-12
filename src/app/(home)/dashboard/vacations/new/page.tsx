@@ -1,5 +1,5 @@
 import { SidebarInset } from "@/components/ui/sidebar"
-import { VacationRequestForm } from "@/components/vacation-request-form"
+import { VacationRequestForm } from "@/components/vacations/vacation-request-form"
 
 export default function NewVacationRequestPage() {
     return (

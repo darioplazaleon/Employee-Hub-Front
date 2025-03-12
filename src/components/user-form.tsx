@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { getPositions } from "@/lib/api"
-import { createUser, updateUser } from "@/actions/user-actions"
+import { createUser, updateUser } from "@/app/actions/user-actions"
 import { useFormStatus } from "react-dom"
 
 interface Position {

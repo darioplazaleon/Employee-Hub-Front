@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { createVacationRequest } from "@/actions/vacation-actions"
+import { createVacationRequest } from "@/app/actions/vacation-actions"
 import { useFormStatus } from "react-dom"
 import { toast } from "sonner"
 

@@ -4,7 +4,7 @@ import { useFormState } from "react-dom"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { createPosition, updatePosition } from "@/actions/position-actions"
+import { createPosition, updatePosition } from "@/app/actions/position-actions"
 import { useFormStatus } from "react-dom"
 
 interface Position {

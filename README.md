@@ -1,63 +1,63 @@
-# Proyecto Frontend con React y Next.js
+# Frontend Project with React and Next.js
 
-Este proyecto es una aplicación frontend desarrollada con React y Next.js. La aplicación está diseñada para interactuar
-con un proyecto backend separado, proporcionando una interfaz de usuario para diversas funcionalidades.
+[![es](https://img.shields.io/badge/lang-es-yellow)](https://github.com/darioplazaleon/Employee-Hub/blob/master/README.es.md)
+[![en](https://img.shields.io/badge/lang-en-red)](https://github.com/darioplazaleon/Employee-Hub/blob/master/README.md)
 
-## Funcionalidades
+This project is a frontend application developed with React and Next.js. The application is designed to interact with a separate backend project, providing a user interface for various functionalities.
 
-- **Autenticación de Usuarios**: Los usuarios pueden iniciar sesión y registrarse.
-- **Gestión de Usuarios**: Los administradores pueden ver, crear, editar y eliminar usuarios.
-- **Gestión de Posiciones**: Los administradores pueden gestionar las posiciones disponibles.
-- **Gestión de Vacaciones**: Los usuarios pueden solicitar vacaciones y ver el estado de sus solicitudes.
-- **Configuración de Usuario**: Los usuarios pueden cambiar su contraseña y actualizar su perfil.
+## Features
 
-## Estructura del Proyecto
+- **User Authentication**: Users can log in and register.
+- **User Management**: Administrators can view, create, edit, and delete users.
+- **Position Management**: Administrators can manage available positions.
+- **Vacation Management**: Users can request vacations and view the status of their requests.
+- **User Settings**: Users can change their password and update their profile.
 
-- **src/middleware.ts**: Middleware para la gestión de rutas y permisos de usuario.
-- **pages/**: Contiene las páginas de la aplicación.
-- **components/**: Componentes reutilizables de la interfaz de usuario.
-- **lib/**: Funciones auxiliares y utilidades.
+## Project Structure
 
-## Requisitos
+- **src/middleware.ts**: Middleware for route and user permission management.
+- **pages/**: Contains the application pages.
+- **components/**: Reusable user interface components.
+- **lib/**: Helper functions and utilities.
+
+## Requirements
 
 - Node.js
-- npm o yarn
+- npm or yarn
 
-## Instalación
+## Installation
 
-1. Clona el repositorio:
+1. Clone the repository:
     ```bash
-    git clone https://github.com/tu-usuario/tu-repositorio.git
+    git clone https://github.com/your-username/your-repository.git
     ```
-2. Instala las dependencias:
+2. Install the dependencies:
     ```bash
-    cd tu-repositorio
+    cd your-repository
     npm install
-    # o
+    # or
     yarn install
     ```
 
-## Ejecución
+## Running
 
-Para iniciar el servidor de desarrollo:
+To start the development server:
 
 ```bash
 npm run dev
-# o
+# or
 yarn dev
 ```
 
-## Configuración
+## Configuration
 
-Asegúrate de configurar las variables de entorno necesarias en un archivo .env o .env.local.
-
+Make sure to configure the necessary environment variables in a .env or .env.local file.
 ```yaml
 API_BASE_URL=http://localhost:8080
-JWT_SECRET=secret # Clave secreta para la generación de tokens JWT,
-                  # usa la misma que en el proyecto backend
+JWT_SECRET=secret # Secret key for generating JWT tokens,
+                  # use the same as in the backend project
 ```
 
-## Proyecto Backend
+## Backend Project
 
-Este proyecto frontend está diseñado para funcionar junto con un [proyecto backend](https://github.com/darioplazaleon/Employee-Hub) separado. Asegúrate de tener el
-backend en funcionamiento y configurado correctamente para que la aplicación frontend pueda interactuar con él.  
+This frontend project is designed to work alongside a separate [backend project](https://github.com/darioplazaleon/Employee-Hub). Make sure to have the backend running and properly configured so that the frontend application can interact with it.  
